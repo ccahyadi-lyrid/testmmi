@@ -1,0 +1,16 @@
+name: Deploy STAGING-bajnew-be
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          curl https://api.lyrid.io/client/dl/linux --output /usr/local/bin/lc && chmod +x /usr/local/bin/lc
+          lc config add --config lyrid_github --key DJGAFtc4GZInLd71EQ8V --secret 50LbVKawwHiGyuZRyQNshQVPXBiCp275FUKGG9V0OuOWlS0FD0
+          lc code submit -rid apsoutheast1
